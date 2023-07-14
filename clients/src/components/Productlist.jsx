@@ -1,20 +1,9 @@
-import React, {useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Productlist(props) {
-    const { product, setProduct } = props;
-
-    useEffect(() => {
-
-        axios.get('http://127.0.0.1:8000/api')
-            .then ((res) => {setProduct(res.data.AllProducts);
-                console.log(res.data.AllProducts)
-            })
-            .catch ((err) => { console.log(err); })
-
-    },[setProduct])
-
+    const { product } = props;
 
 
     return (
@@ -22,12 +11,11 @@ function Productlist(props) {
             <h1>Productlist</h1>
             <ul>
                 {
-                    product.map((product) =>
-                    
-                    <li>
-                        <Link key={product._id} to={`/product/${product._id}`}>{product.Title}</Link> 
-                    </li>
-                        )
+                    product.map((product) => {
+                        return  <li key={product._id}>
+                                    <Link key={product._id} to={`/product/${product._id}`}>{product.Title}</Link>
+                                </li>
+                    })
                 }
             </ul>
 

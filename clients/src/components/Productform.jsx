@@ -9,18 +9,17 @@ function Productform(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
+        
 
         const newProduct = {
             Title: title,
             Price: price,
             Description: description
-        }
-
+        };
         axios.post('http://127.0.0.1:8000/api/create', newProduct)
-
             .then((res) => {
                 console.log(res.data);
-                setProduct([...product, res.data]);
+                setProduct([...product, res.data.NewPorduct]);
                 setTitle("");
                 setPrice("");
                 setDescription("")
